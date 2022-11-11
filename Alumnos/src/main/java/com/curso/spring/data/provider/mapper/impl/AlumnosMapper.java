@@ -3,7 +3,9 @@ package com.curso.spring.data.provider.mapper.impl;
 import com.curso.spring.data.entities.AlumnosModel;
 import com.curso.spring.data.provider.mapper.IMapper;
 import com.curso.spring.dto.data.AlumnosDto;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AlumnosMapper implements IMapper<AlumnosModel, AlumnosDto> {
 
     @Override

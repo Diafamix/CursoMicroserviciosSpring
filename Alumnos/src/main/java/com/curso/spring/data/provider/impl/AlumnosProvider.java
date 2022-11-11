@@ -25,7 +25,7 @@ public class AlumnosProvider implements IAlumnosProvider {
                 .map(alumnosMapper::mapToDto)
                 .orElseThrow(() -> new RuntimeException("Error al sacar los datos! "));
     }
-    
+
     @Override
     public AlumnosDto findById(Long id) {
         return alumnosDao.findById(id)
