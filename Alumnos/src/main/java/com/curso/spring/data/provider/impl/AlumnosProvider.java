@@ -9,7 +9,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Optional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -31,5 +32,24 @@ public class AlumnosProvider implements IAlumnosProvider {
         return alumnosDao.findById(id)
                 .map(alumnosMapper::mapToDto)
                 .orElseThrow(() -> new RuntimeException("Error al sacar los datos! "));
+    }
+
+    @Override
+    public List<AlumnosDto> findAll() {
+        return alumnosDao.findAll().stream()
+                .map(alumnosMapper::mapToDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public AlumnosDto save(AlumnosDto dto) {
+        return alumnosDao.save(dto)
+                .map(alumnosMapper::mapToDto)
+                .orElseThrow(() -> new RuntimeException("Error al registrar un usuario nuevo!"));
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        alumnosDao.deleteById(id);
     }
 }
